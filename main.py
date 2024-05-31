@@ -19,12 +19,11 @@ content = request.json()
 body: str = "Subject: Today's news" + "\n"
 
 for article in content["articles"][:20]:
-    if article["description"] and article['title'] is not None:
+    if article["description"] and article['title'] and ['url'] is not None:
         body = body + article["title"] + "\n" \
                + article['description'] + "\n" \
                + article["url"] + 2*"\n"
 
-print(type(body))
 
 body = body.encode("utf-8")
 send_mail(body)
